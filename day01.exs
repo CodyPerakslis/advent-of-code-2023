@@ -24,16 +24,19 @@ defmodule Day01 do
 
   def getFirstAndLastNumbers(str) do 
     case getFirstNumber(str) do
-      {:error, _} -> {:error, "No number found"}
+      {:error, message} -> {:error, message}
       {number, rest} -> getFirstAndLastNumbers({number, number, rest})
     end
   end
 end
 
+File.stream!("day01.txt") |> 
+    Enum.map(&Day01.getFirstAndLastNumbers(&1)) |>
+    Enum.map(fn
+        {:error, message} -> raise message
+        {first, last} -> first * 10 + last
+    end) |>
+    Enum.sum() |>
+    IO.puts()
 
-IO.puts("Hello, world!")
 
-{number, rest} = Day01.getFirstAndLastNumbers("a4eu3shs2o")
-
-IO.puts(number)
-IO.puts(rest)
