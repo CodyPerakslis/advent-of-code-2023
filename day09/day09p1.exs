@@ -19,8 +19,7 @@ defmodule Day09Part1 do
         findDelta([n2 | rest], deltas ++ [n2 - n1], superDeltas)
     end
 
-
-    def solve(input) do 
+    def parseDeltas(input) do 
         File.read!(input)
             |> String.split("\n")
             |> Enum.map(fn line -> String.split(line) 
@@ -28,6 +27,11 @@ defmodule Day09Part1 do
             end)
             |> check("input")
             |> Enum.map(fn nums -> findDelta(nums) end)
+    end
+
+
+    def solve(input) do 
+        parseDeltas(input)
             |> check("deltas")
             |> Enum.map(fn superDeltas -> Enum.reduce(superDeltas, 0, fn deltas, sum -> sum + List.last(deltas) end) end)
             |> check("next values")
