@@ -1,4 +1,4 @@
-defmodule Day11Part1 do
+defmodule Day11 do
     def check(val, label) do 
         IO.inspect(val, charlists: :as_lists, label: label)
     end
@@ -81,4 +81,4 @@ defmodule Day11Part1 do
     end
 end
 
-Day11Part1.answer
+Day11.answer
