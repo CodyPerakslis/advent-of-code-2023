@@ -25,7 +25,8 @@ defmodule Day11Part1 do
 
     def getGalaxyExpansion(cord, [expanse | expansions]) do 
         cond do 
-            cord > expanse -> 1 + getGalaxyExpansion(cord, expansions)
+            # change the rate from 999999 -> 1 for part 1
+            cord > expanse -> 999999 + getGalaxyExpansion(cord, expansions)
             true -> cord
         end
     end 
