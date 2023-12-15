@@ -61,6 +61,28 @@ defmodule Day13 do
         100 * determineReflectionPointHor(lines) + determineReflectionPoint(lines)
     end 
 
+    def getStoreByStr(lineString) do 
+        String.split(lineString, "\n")
+            |> getScore()
+    end 
+
+    def isNewScore(score, realValue) do 
+        score > 0 and score !== realValue
+    end 
+
+    def offByOneValue(c, o, lineString, restString, realValue) do 
+        score = getStoreByStr(restString <> c <> lineString)
+        cond do 
+            score == 0 or score == realValue -> offByOne(lineString, restString <> o, realValue)
+            true -> score 
+        end
+    end 
+
+    def offByOne(<<c>> <> lineString, restString, realValue) do 
+        case c do 
+            ?. -> if isNewScore(getStoreByStr(restString <> ?# <> lineString)) do 
+    end 
+
     def solve(input) do 
         File.read!(input)
             |> String.split("\n\n")
